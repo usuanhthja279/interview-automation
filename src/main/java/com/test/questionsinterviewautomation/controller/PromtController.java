@@ -17,8 +17,8 @@ public class PromtController {
     public ResponseEntity<String> getResponseFromPrompt(@RequestBody PromptRequest promptRequest) {
 
         // TODO: Implement the logic to return the response based on the prompt
-        log.info("Prompt received: {}", promptRequest.getPrompt());
+        log.info("Prompt received: {}", promptRequest.prompt());
 
-        return ResponseEntity.ok("You have entered: " + promptRequest.getPrompt());
+        return ResponseEntity.ok("You have entered: " + promptRequest.prompt());
     }
 }

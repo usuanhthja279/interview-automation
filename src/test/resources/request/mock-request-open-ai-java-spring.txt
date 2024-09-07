@@ -1,0 +1,1 @@
+Generate 10 unique Java + Spring interview questions, 10 practice problems on Streams and Lambdas, 2 DSA problems, and 2 small project ideas on Spring + Java.

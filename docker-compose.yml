@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  # MailHog service
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"  # Expose SMTP server
+      - "8025:8025"  # Expose MailHog web UI

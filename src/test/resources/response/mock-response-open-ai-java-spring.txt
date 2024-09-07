@@ -1,0 +1,137 @@
+```json
+{
+  "interviewQuestions": [
+    {
+      "question": "What are the different types of dependency injection in Spring?",
+      "keyPoints": ["Constructor Injection", "Setter Injection", "Field Injection"]
+    },
+    {
+      "question": "Explain the Spring Bean lifecycle.",
+      "keyPoints": ["Instantiation", "Initialization", "Destruction"]
+    },
+    {
+      "question": "What is Spring Boot and how does it differ from traditional Spring?",
+      "keyPoints": ["Convention over Configuration", "Embedded Server Support", "Auto Configuration"]
+    },
+    {
+      "question": "What are Spring Profiles?",
+      "keyPoints": ["Organizing beans for different environments", "Activating profiles", "Conditional Configuration"]
+    },
+    {
+      "question": "What is the use of @Autowired in Spring?",
+      "keyPoints": ["Automatic dependency injection", "Field injection", "Constructor injection"]
+    },
+    {
+      "question": "What is the purpose of the @Controller annotation?",
+      "keyPoints": ["Indicates a Spring MVC Controller", "Handles web requests", "Supports REST APIs"]
+    },
+    {
+      "question": "How can you handle exceptions in Spring MVC?",
+      "keyPoints": ["@ControllerAdvice", "@ExceptionHandler", "Global Exception Handling"]
+    },
+    {
+      "question": "Explain the concept of Aspect-Oriented Programming (AOP) in Spring.",
+      "keyPoints": ["Cross-cutting concerns", "Advisors and Pointcuts", "Annotations like @Aspect"]
+    },
+    {
+      "question": "What is Spring Data JPA?",
+      "keyPoints": ["Simplifies data access", "Repository pattern", "JPA/Hibernate integration"]
+    },
+    {
+      "question": "How do you secure a Spring application?",
+      "keyPoints": ["Spring Security", "Authentication and Authorization", "CSRF protection"]
+    }
+  ],
+  "streamsAndLambdas": [
+    {
+      "question": "How can you filter a list of integers to find even numbers using Streams?",
+      "keyPoints": ["Use filter() method", "Predicate for even numbers", "Collect results using collect()"]
+    },
+    {
+      "question": "Describe how to sort a list of strings in reverse order using Streams.",
+      "keyPoints": ["Use sorted() method with Comparator.reverseOrder()", "Lambda expression for sorting", "Collect results into a List"]
+    },
+    {
+      "question": "How do you map a list of strings to their lengths using Streams?",
+      "keyPoints": ["Use map() method", "Function to get string length", "Collect results into a List"]
+    },
+    {
+      "question": "Explain how to find the maximum value in a list of integers using Streams.",
+      "keyPoints": ["Use max() method", "Comparator for integers", "Optional for handling empty lists"]
+    },
+    {
+      "question": "Illustrate how to combine multiple lists into a single list using Streams.",
+      "keyPoints": ["Use Stream.concat() method", "FlatMap for nested structures", "Collect results into a List"]
+    },
+    {
+      "question": "How can you check if any elements in a list match a condition using Streams?",
+      "keyPoints": ["Use anyMatch() method", "Predicate for condition", "Boolean result indicates match found"]
+    },
+    {
+      "question": "Describe how to create a list of unique elements from a list using Streams.",
+      "keyPoints": ["Use distinct() method", "Removes duplicates", "Collect results into a List"]
+    }
+  ],
+  "dsaProblems": [
+    {
+      "type": "easy",
+      "question": "Implement a function to find the maximum element in an array.",
+      "keyPoints": ["Loop through the array", "Maintain a variable for the max", "Return the max value"]
+    },
+    {
+      "type": "medium",
+      "question": "Write a function to check if two strings are anagrams.",
+      "keyPoints": ["Sort both strings", "Compare sorted results", "Consider character counts"]
+    },
+    {
+      "type": "hard",
+      "question": "Implement a function to solve the N-Queens problem.",
+      "keyPoints": ["Backtracking approach", "Use a board representation", "Check for valid placements"]
+    }
+  ],
+  "sqlProblems": [
+    {
+      "type": "easy",
+      "question": "Write a SQL query to find all employees with a salary greater than 50000.",
+      "keyPoints": ["Select from employees table", "Use WHERE clause", "Return relevant columns"]
+    },
+    {
+      "type": "medium",
+      "question": "Write a SQL query to find the department with the highest average salary.",
+      "keyPoints": ["Group by department", "Calculate average salary", "Use ORDER BY and LIMIT"]
+    }
+  ],
+  "systemDesignProblems": [
+    {
+      "type": "easy",
+      "question": "Design a URL shortening service.",
+      "keyPoints": ["Generate unique short codes", "Store mappings in a database", "Redirects to original URL"]
+    },
+    {
+      "type": "hard",
+      "question": "Design a scalable notification system.",
+      "keyPoints": ["Message queue for processing", "Different types of notifications (email, SMS)", "Delivery guarantees and retries"]
+    }
+  ],
+  "vertxCompletableFutureProblems": [
+    {
+      "question": "Explain how to handle asynchronous tasks using CompletableFuture.",
+      "keyPoints": ["Use supplyAsync() for non-blocking calls", "Combine multiple futures with thenCombine()", "Handle exceptions with exceptionally()"]
+    },
+    {
+      "question": "How can you use Vert.x for building reactive applications?",
+      "keyPoints": ["Event-driven architecture", "Use of Verticles", "Integration with CompletableFutures"]
+    }
+  ],
+  "projectIdeas": [
+    {
+      "question": "Create a simple task management application using Spring Boot.",
+      "keyPoints": ["CRUD operations for tasks", "RESTful API design", "Database integration with Spring Data JPA"]
+    },
+    {
+      "question": "Build a weather forecasting application using Spring Boot and external APIs.",
+      "keyPoints": ["Fetch data from third-party weather APIs", "Display weather information", "Implement caching for efficiency"]
+    }
+  ]
+}
+```
