@@ -52,7 +52,7 @@ public class ApplicationUtil {
         fileService.writeJsonToFile("E:/questions-interview-automation/src/main/resources/prompt-response-history.json", historyResponseToJson);
     }
 
-    public static String getMessageForEmailBody(String promptMessage) {
+    public String getMessageForEmailBody(String promptMessage) {
         JsonObject promptMessageToJson = modifyPromptMessageToJson(promptMessage);
         StringBuilder emailBody = new StringBuilder();
 
@@ -97,7 +97,7 @@ public class ApplicationUtil {
     }
 
 
-    public static JsonObject modifyPromptMessageToJson(String promptMessage) {
+    public JsonObject modifyPromptMessageToJson(String promptMessage) {
         promptMessage = promptMessage.replace("```", "").replace("json", "");
         return new JsonObject(promptMessage);
     }

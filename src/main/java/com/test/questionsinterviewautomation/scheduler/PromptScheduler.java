@@ -54,7 +54,7 @@ public class PromptScheduler {
             applicationUtil.updateHistoryResponse(response);
             log.info("Updating history response successfully completed");
 
-            String emailStructuredMessage = ApplicationUtil.getMessageForEmailBody(response);
+            String emailStructuredMessage = applicationUtil.getMessageForEmailBody(response);
             emailService.sendEmail(ApplicationConstant.mailList,
                     "RE: Interview Prep ::: JAVA ::: " + LocalDateTime.now(ZoneId.of("Asia/Kolkata")),
                     emailStructuredMessage);
