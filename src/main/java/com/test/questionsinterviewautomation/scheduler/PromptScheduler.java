@@ -6,6 +6,7 @@ import com.test.questionsinterviewautomation.service.FileService;
 import com.test.questionsinterviewautomation.service.PromptService;
 import com.test.questionsinterviewautomation.util.ApplicationUtil;
 import io.vertx.core.json.JsonObject;
+import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -65,4 +66,15 @@ public class PromptScheduler {
             log.error("Error sending prompt response: {}", e.getMessage());
         }
     }
+
+//    @Scheduled(cron = "0 10 10 * * ?", zone = "Asia/Kolkata") // 10:10 AM IST every day
+//    public void scheduleShutdown() {
+//        System.out.println("Shutting down the Spring Boot application at 10:10 AM IST.");
+//        shutdown();
+//    }
+//
+//    @PreDestroy
+//    public void shutdown() {
+//        System.exit(0); // Stops the application
+//    }
 }
