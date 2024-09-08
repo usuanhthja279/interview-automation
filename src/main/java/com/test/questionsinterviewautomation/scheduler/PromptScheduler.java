@@ -31,7 +31,7 @@ public class PromptScheduler {
         this.fileService = fileService;
     }
 
-    @Scheduled(cron = "0 * * * * *", zone = "Asia/Kolkata")
+    @Scheduled(cron = "0 0 10 * * * ", zone = "Asia/Kolkata")
     public void scheduledPromptResponse() {
         try {
             log.info("Sending prompt to the user");
