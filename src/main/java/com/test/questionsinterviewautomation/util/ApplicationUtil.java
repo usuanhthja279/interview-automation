@@ -1,21 +1,30 @@
 package com.test.questionsinterviewautomation.util;
 
 import com.test.questionsinterviewautomation.constant.ApplicationConstant;
+import com.test.questionsinterviewautomation.service.FileService;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
 
+@Slf4j
+@Component
 public class ApplicationUtil {
+    private final FileService fileService;
 
-    public static void updateHistoryResponse(String promptMessage) throws URISyntaxException, IOException {
+    public ApplicationUtil(FileService fileService) {
+        this.fileService = fileService;
+    }
+
+    public void updateHistoryResponse(String promptMessage) throws URISyntaxException, IOException {
+
         JsonObject promptMessageToJson = modifyPromptMessageToJson(promptMessage);
-        String historyResponse = Files.readString(Path.of(ClassLoader.getSystemResource("prompt-response-history.json").toURI()));
+        String historyResponse = String.valueOf(fileService.readJsonFromFile("E:/questions-interview-automation/src/main/resources/prompt-response-history.json"));
         JsonObject historyResponseToJson;
 
         if (historyResponse.isEmpty()) {
@@ -36,10 +45,11 @@ public class ApplicationUtil {
                                 .map(JsonObject::mapFrom)
                                 .map(json -> json.getString("question"))
                                 .collect(JsonArray::new, JsonArray::add, JsonArray::addAll);
-                        historyResponseToJson.put(entry.getKey(), ((JsonArray)entry.getValue()).addAll(x));
+                        historyResponseToJson.put(entry.getKey(), historyResponseToJson.getJsonArray(entry.getKey(), new JsonArray()).addAll(x));
                     });
         }
-        Files.writeString(Path.of(ClassLoader.getSystemResource("prompt-response-history.json").toURI()), historyResponseToJson.encodePrettily());
+        log.info("History response {}", historyResponseToJson);
+        fileService.writeJsonToFile("E:/questions-interview-automation/src/main/resources/prompt-response-history.json", historyResponseToJson);
     }
 
     public static String getMessageForEmailBody(String promptMessage) {
