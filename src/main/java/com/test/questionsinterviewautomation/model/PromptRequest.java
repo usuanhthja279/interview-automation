@@ -1,4 +1,6 @@
 package com.test.questionsinterviewautomation.model;
 
-public record PromptRequest(String prompt) {
+import java.util.List;
+
+public record PromptRequest(List<String> type, List<String> mail) {
 }

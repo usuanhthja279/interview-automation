@@ -6,14 +6,10 @@ import com.test.questionsinterviewautomation.service.FileService;
 import com.test.questionsinterviewautomation.service.PromptService;
 import com.test.questionsinterviewautomation.util.ApplicationUtil;
 import io.vertx.core.json.JsonObject;
-import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.Files;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -52,16 +48,18 @@ public class PromptScheduler {
             String response = promptService.executePrompt(prompt);
             log.info("Response from OpenAI successfully received");
 
-            applicationUtil.updateHistoryResponse(response);
-            log.info("Updating history response successfully completed");
-
-            String emailStructuredMessage = applicationUtil.getMessageForEmailBody(response);
+            String emailStructuredMessage = applicationUtil.getMessageForEmailBody(response, levelValue);
             emailService.sendEmail(ApplicationConstant.mailList,
                     "RE: Interview Prep ::: JAVA ::: " + LocalDateTime.now(ZoneId.of("Asia/Kolkata")),
                     emailStructuredMessage);
             log.info("Prompt response sent successfully");
+
+            applicationUtil.updateHistoryResponse(response, levelValue, ApplicationConstant.mailList.get(0));
+            log.info("Updating history response successfully completed");
+
             fileService.writeJsonToFile("E:/questions-interview-automation/src/main/resources/level.json",
                     new JsonObject().put("level", String.valueOf(Integer.parseInt(levelValue) + 1)));
+            log.info("Level updated successfully");
         } catch (Exception e) {
             log.error("Error sending prompt response: {}", e.getMessage());
         }

@@ -1,6 +1,7 @@
 package com.test.questionsinterviewautomation.controller;
 
 import com.test.questionsinterviewautomation.model.PromptRequest;
+import com.test.questionsinterviewautomation.service.PromptControllerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @Slf4j
 public class PromtController {
-    @PostMapping(value = "/promt", produces = MediaType.APPLICATION_JSON_VALUE)
+    private final PromptControllerService promptControllerService;
+
+    public PromtController(PromptControllerService promptControllerService) {
+        this.promptControllerService = promptControllerService;
+    }
+
+    @PostMapping(value = "/prompt", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getResponseFromPrompt(@RequestBody PromptRequest promptRequest) {
+        log.info("Request received for prompt: {}", promptRequest);
 
-        // TODO: Implement the logic to return the response based on the prompt
-        log.info("Prompt received: {}", promptRequest.prompt());
+        String response = promptControllerService.fetchPromptResponseAndSendToMail(promptRequest.type(), promptRequest.mail());
+        log.info("Response from prompt: {}", response);
 
-        return ResponseEntity.ok("You have entered: " + promptRequest.prompt());
+        return ResponseEntity.ok(response);
     }
 }
