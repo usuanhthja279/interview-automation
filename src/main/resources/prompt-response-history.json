@@ -1,0 +1,106 @@
+{
+  "data": [
+    {
+      "mail": "usuanhthja279@gmail.com",
+      "level": "0",
+      "questions": {
+        "javaQuestions": [
+          "What is the Java Virtual Machine (JVM)?",
+          "What is the difference between JDK and JRE?",
+          "What is a Java class?",
+          "What are primitive data types in Java?",
+          "What is the purpose of the main method in Java?"
+        ],
+        "springQuestions": [
+          "What is Spring Framework?",
+          "What is dependency injection?",
+          "What are Spring Beans?",
+          "What is the purpose of @Component in Spring?",
+          "What is application context in Spring?"
+        ],
+        "springBootQuestions": [
+          "What is Spring Boot?",
+          "What is the purpose of @SpringBootApplication?",
+          "How does Spring Boot handle application properties?",
+          "What is Actuator in Spring Boot?",
+          "What is a Spring Boot Starter?"
+        ],
+        "dsaQuestions": [
+          "What is an array?",
+          "What is a linked list?",
+          "What is a stack?",
+          "What is a queue?",
+          "What is a binary tree?"
+        ],
+        "streamsQuestions": [
+          "What are Java Streams?",
+          "What is the purpose of the filter operation in streams?",
+          "What does the map operation do in streams?",
+          "What is the difference between a stream and a collection?",
+          "What is terminal operation in streams?"
+        ],
+        "lambdasQuestions": [
+          "What is a lambda expression in Java?",
+          "What is a functional interface?",
+          "What are the advantages of using lambda expressions?",
+          "What is the syntax of a lambda expression?",
+          "How do you use lambda expressions with collections?"
+        ],
+        "vertxQuestions": [
+          "What is Vert.x?",
+          "What is the event loop in Vert.x?",
+          "How do you create a Verticle in Vert.x?",
+          "What is the purpose of the Vert.x event bus?",
+          "What is a Future in Vert.x?"
+        ],
+        "completablefutureQuestions": [
+          "What is CompletableFuture in Java?",
+          "How do you create a CompletableFuture?",
+          "What is the use of thenApply() method?",
+          "What is the purpose of exceptionally() method?",
+          "How do you combine multiple CompletableFutures?"
+        ],
+        "javaExercise": [
+          "Write a Java program that prints 'Hello, World!'",
+          "Create a simple class 'Car' with attributes 'make' and 'model'.",
+          "Write a Java method to calculate the sum of two integers."
+        ],
+        "springExercise": [
+          "Create a simple Spring Boot application.",
+          "Define a Spring Bean using @Component.",
+          "Configure an application property for a Spring application."
+        ],
+        "springBootExercise": [
+          "Create a RESTful API using Spring Boot.",
+          "Set up a Spring Boot application with an embedded database.",
+          "Implement a Spring Boot Actuator endpoint."
+        ],
+        "dsaExercise": [
+          "Implement a function to reverse an array.",
+          "Write a function to find the maximum element in a list.",
+          "Create a simple implementation of a stack using an array."
+        ],
+        "streamsExercise": [
+          "Write a Java program using streams to filter even numbers from a list.",
+          "Use streams to convert a list of strings to uppercase.",
+          "Implement a stream operation to sum a list of integers."
+        ],
+        "lambdasExercise": [
+          "Create a lambda expression to add two numbers.",
+          "Write a method that accepts a lambda to print a message.",
+          "Use a lambda expression to sort a list of strings by length."
+        ],
+        "vertxExercise": [
+          "Create a simple Vert.x application with a HTTP server.",
+          "Implement a Vert.x event bus communication.",
+          "Write a Vert.x Verticle that responds to HTTP GET requests."
+        ],
+        "completablefutureExercise": [
+          "Create a CompletableFuture that returns a string after a delay.",
+          "Combine two CompletableFutures and print the result.",
+          "Handle exceptions in a CompletableFuture using exceptionally()."
+        ]
+      }
+    }
+  ]
+}

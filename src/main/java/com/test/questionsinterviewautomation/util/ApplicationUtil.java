@@ -49,14 +49,25 @@ public class ApplicationUtil {
         JsonObject promptMessageToJson = modifyPromptMessageToJson(promptMessage);
         String historyResponse = String.valueOf(fileService.readJsonFromFile("E:/questions-interview-automation/src/main/resources/prompt-response-history.json"));
         JsonObject historyResponseToJson;
+        log.info("History response before update: {}", historyResponse);
 
         //{"data": [{"mail": "mail", "level": "level", "questions": {"type": "question"}}]}
 
-        if (historyResponse.isEmpty()) {
+        if (historyResponse.isEmpty() || "{}".equals(historyResponse)) {
+            JsonObject questionsExtractions = new JsonObject();
+            promptMessageToJson.stream()
+                    .forEach(entry -> {
+                        JsonArray x = ((JsonArray) entry.getValue()).stream()
+                                .map(JsonObject::mapFrom)
+                                .map(json -> json.getString("question") != null ? json.getString("question") : json.getString("exercise"))
+                                .collect(JsonArray::new, JsonArray::add, JsonArray::addAll);
+                        questionsExtractions.put(entry.getKey(), x);
+                    });
+
             historyResponseToJson = new JsonObject().put("data", new JsonArray().add(new JsonObject()
                     .put("mail", mail)
                     .put("level", level)
-                    .put("questions", promptMessageToJson)));
+                    .put("questions", questionsExtractions)));
 //            promptMessageToJson.stream()
 //                    .forEach(entry -> {
 //                        JsonArray x = ((JsonArray) entry.getValue()).stream()
@@ -66,14 +77,24 @@ public class ApplicationUtil {
 //                        historyResponseToJson.put(entry.getKey(), x);
 //                    });
         } else if (new JsonObject(historyResponse).getJsonArray("data")
-                .stream()
-                .map(JsonObject::mapFrom)
-                .noneMatch(x -> Objects.equals(mail, x.getString("mail")))) {
+                        .stream()
+                        .map(JsonObject::mapFrom)
+                        .noneMatch(x -> Objects.equals(mail, x.getString("mail")))) {
+            JsonObject questionsExtractions = new JsonObject();
+            promptMessageToJson.stream()
+                    .forEach(entry -> {
+                        JsonArray x = ((JsonArray) entry.getValue()).stream()
+                                .map(JsonObject::mapFrom)
+                                .map(json -> json.getString("question") != null ? json.getString("question") : json.getString("exercise"))
+                                .collect(JsonArray::new, JsonArray::add, JsonArray::addAll);
+                        questionsExtractions.put(entry.getKey(), x);
+                    });
+
             historyResponseToJson = new JsonObject(historyResponse);
             JsonObject newData = new JsonObject()
                     .put("mail", mail)
                     .put("level", level)
-                    .put("questions", promptMessageToJson);
+                    .put("questions", questionsExtractions);
             historyResponseToJson.getJsonArray("data").add(newData);
         } else {
             historyResponseToJson = new JsonObject(historyResponse);
@@ -93,8 +114,8 @@ public class ApplicationUtil {
         fileService.writeJsonToFile("E:/questions-interview-automation/src/main/resources/prompt-response-history.json", historyResponseToJson);
     }
 
-    public String getMessageForEmailBody(String promptMessage, String level) {
-        JsonObject promptMessageToJson = modifyPromptMessageToJson(promptMessage);
+    public String getMessageForEmailBody(String promptResponse, String level) {
+        JsonObject promptMessageToJson = modifyPromptMessageToJson(promptResponse);
         StringBuilder emailBody = new StringBuilder();
 
         emailBody.append("<html>")
@@ -123,7 +144,8 @@ public class ApplicationUtil {
 //                                if (ApplicationConstant.typeList.contains(entry.getKey())) {
 //                                    emailBody.append("<b>").append("Type :: ").append("</b>").append("<b>").append(json.getString("type").toUpperCase()).append("</b>").append("<br>");
 //                                }
-                                emailBody.append("<b>").append("Q :: ").append("</b>").append("<b>").append(json.getString("question")).append("</b>").append("<br>");
+                                emailBody.append("<b>").append("Q :: ").append("</b>").append("<b>")
+                                        .append(json.getString("question") != null ? json.getString("question") : json.getString("exercise")).append("</b>").append("<br>");
                                 emailBody.append("<b>").append("K :: ").append("</b>").append("<br>");
                                 json.getJsonArray("keyPoints")
                                         .stream()
@@ -172,7 +194,7 @@ public class ApplicationUtil {
                                 .append(" interview exercises with difficulty level: ")
                                 .append(levelValue).append(", in this format: ")
                                 .append(exerciseType).append("Exercise")
-                                .append(": [{\"questions\": \"value\", \"keyPoints\": [\"value1\", \"value2\"]}]")
+                                .append(": [{\"exercise\": \"value\", \"keyPoints\": [\"value1\", \"value2\"]}]")
                                 .append("\n");
                     });
         });
